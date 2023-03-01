@@ -322,6 +322,20 @@
             <a href="#i18n" class="toc-h1 toc-link" data-title="i18n">i18n</a>
           </li>
           <li>
+            <a href="#common-response-body" class="toc-h1 toc-link" data-title="Common response body">Common response body</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#default-response-body" class="toc-h2 toc-link" data-title="Default response body">Default response body</a>
+                  </li>
+                  <li>
+                    <a href="#single-response-body" class="toc-h2 toc-link" data-title="Single response body">Single response body</a>
+                  </li>
+                  <li>
+                    <a href="#list-response-body" class="toc-h2 toc-link" data-title="List response body">List response body</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
@@ -372,7 +386,55 @@ name, userName, userPassword, folder, notes, uri 등<br>
 headers에서 아래 내용을 추가하면 됩니다.</p>
 
 <p>한국어 : <code>Accept-Language: ko_KR</code><br>
-영어 : <code>Accept-Language: en</code></p>
+english : <code>Accept-Language: en</code></p>
+<h1 id='common-response-body'>Common response body</h1>
+<blockquote>
+<p>Default response body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"성공하였습니다."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Single response body </p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"성공하였습니다."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY3NzY1ODkwOSwiZXhwIjoxNjc3NjYyNTA5fQ.lLWl2bA_pLrgJw0pPXebv9P85lQTGLwNSoz4N8KguCs"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>List response body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"성공하였습니다."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"itemIdentity"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"swagger 테스트test"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gudrb963@gmail.com"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"itemIdentity"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"duck"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"duck@goose.com"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='default-response-body'>Default response body</h3>
+<p><code>success</code> : 응답 성공여부 true/false<br>
+<code>code</code> : 응답 성공 번호 : &gt;= 0 success, &lt; 0 fail<br>
+<code>message</code> : 응답 메시지</p>
+<h3 id='single-response-body'>Single response body</h3>
+<p><code>data</code> : single response 데이터</p>
+<h3 id='list-response-body'>List response body</h3>
+<p><code>list</code> : list response 데이터</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
