@@ -51,7 +51,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HttpExample {
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     URL url = new URL("http://example.com/api_endpoint_here");
     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
     
