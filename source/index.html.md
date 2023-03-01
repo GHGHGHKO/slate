@@ -99,7 +99,7 @@ english : `Accept-Language: en`
 
 ### Default response body   
 `success` : 응답 성공여부 true/false  
-`code` : 응답 성공 번호 : >= 0 success, < 0 fail  
+`code` : 응답 성공 번호 >= 0 success, < 0 fail  
 `message` : 응답 메시지
 
 ### Single response body
