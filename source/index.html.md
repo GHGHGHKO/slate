@@ -25,11 +25,16 @@ meta:
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+URL : https://goose-auth.synology.me
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+https://github.com/GHGHGHKO/goose-auth-api-server  
+Repository의 API 문서입니다.  
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Bitwarden의 API 서버를 clone 했습니다.   
+name, userName, userPassword, folder, notes, uri 등  
+로그인 정보를 저장해두고 언제든지 가져올 수 있습니다.  
+
+방문해주셔서 감사합니다. :)
 
 # Authentication
 
