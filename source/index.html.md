@@ -3,7 +3,8 @@ title: API Reference
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
   - shell
-  - ruby
+  - java
+  - kotlin
   - python
   - javascript
 
@@ -43,6 +44,75 @@ name, userName, userPassword, folder, notes, uri을 입력하여
 ```shell
 curl "api_endpoint_here" \
 -H "Accept-Language: en"
+```
+
+```java
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class HttpExample {
+  public static void main(String[] args) throws Exception {
+    URL url = new URL("http://example.com/api_endpoint_here");
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    
+    // "Accept-Language" 헤더 설정
+    conn.setRequestProperty("Accept-Language", "en");
+
+    // HTTP 요청 메서드 설정
+    conn.setRequestMethod("GET");
+
+    // 요청 전송
+    int responseCode = conn.getResponseCode();
+    System.out.println("Response Code : " + responseCode);
+  }
+}
+```
+
+```kotlin
+import java.net.HttpURLConnection
+import java.net.URL
+
+fun main() {
+  val url = URL("http://example.com/api_endpoint_here")
+  val conn = url.openConnection() as HttpURLConnection
+
+  // "Accept-Language" 헤더 설정
+  conn.setRequestProperty("Accept-Language", "en")
+
+  // HTTP 요청 메서드 설정
+  conn.requestMethod = "GET"
+
+  // 요청 전송
+  val responseCode = conn.responseCode
+  println("Response Code : $responseCode")
+}
+```
+
+```python
+import urllib.request
+
+url = "http://example.comapi_endpoint_here"
+headers = {"Accept-Language": "en"}
+req = urllib.request.Request(url, headers=headers)
+
+with urllib.request.urlopen(req) as response:
+   the_page = response.read()
+   print(the_page)
+```
+
+```javascript
+const http = new XMLHttpRequest();
+const url = 'http://example.comapi_endpoint_here';
+const lang = 'en';
+http.open('GET', url);
+http.setRequestHeader('Accept-Language', lang);
+http.send();
+
+http.onreadystatechange = (e) => {
+  if (http.readyState === XMLHttpRequest.DONE && http.status === 200) {
+    console.log(http.responseText);
+  }
+}
 ```
 
 response body에 한국어, 영어를 지원하고 있습니다.  
