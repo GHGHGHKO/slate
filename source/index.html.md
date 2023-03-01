@@ -31,7 +31,7 @@ URL : https://goose-auth.synology.me
 Repository의 API 문서입니다.  
 
 Bitwarden의 API 서버를 clone 했습니다.   
-name, userName, userPassword, folder, notes, uri 등  
+name, userName, userPassword, folder, notes, uri을 입력하여  
 로그인 정보를 저장해두고 언제든지 가져올 수 있습니다.  
 
 방문해주셔서 감사합니다. :)
@@ -45,7 +45,7 @@ curl "api_endpoint_here" \
 -H "Accept-Language: en"
 ```
 
-response body에 한국어, 영어를 지원하고 있습니다.
+response body에 한국어, 영어를 지원하고 있습니다.  
 headers에서 아래 내용을 추가하면 됩니다.
 
 한국어 : `Accept-Language: ko_KR`  
@@ -146,16 +146,16 @@ const kittn = require('kittn');
 let api = kittn.authorize('meowmeowmeow');
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> `some-jwt-token` 토큰을 /v1/signIn response body의 jwt token으로 바꿔주세요.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+API를 호출하기 위해선 jwt token이 있어야 합니다.  
+`/v1/signIn` API를 호출하여 jwt token을 받을 수 있습니다.   
+jwt token headers는 아래처럼 넣을 수 있습니다.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`X-AUTH-TOKEN: some-jwt-token`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+<code>some-jwt-token</code>을 jwt token으로 변경해야 합니다.
 </aside>
 
 # Kittens
