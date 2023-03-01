@@ -97,6 +97,16 @@ english : `Accept-Language: en`
 }
 ```
 
+> Fail response body
+
+```json
+{
+    "success": false,
+    "code": -1005,
+    "message": "You are an existing member."
+}
+```
+
 ### Default response body   
 `success` : 응답 성공여부 true/false  
 `code` : 응답 성공 번호 >= 0 success, < 0 fail  
