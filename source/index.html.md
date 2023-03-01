@@ -91,7 +91,7 @@ fun main() {
 ```python
 import urllib.request
 
-url = "http://example.comapi_endpoint_here"
+url = "http://example.com/api_endpoint_here"
 headers = {"Accept-Language": "en"}
 req = urllib.request.Request(url, headers=headers)
 
@@ -102,7 +102,7 @@ with urllib.request.urlopen(req) as response:
 
 ```javascript
 const http = new XMLHttpRequest();
-const url = 'http://example.comapi_endpoint_here';
+const url = 'http://example.com/api_endpoint_here';
 const lang = 'en';
 http.open('GET', url);
 http.setRequestHeader('Accept-Language', lang);
