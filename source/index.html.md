@@ -27,7 +27,7 @@ meta:
 
 URL : https://goose-auth.synology.me
 
-https://github.com/GHGHGHKO/goose-auth-api-server  
+[https://github.com/GHGHGHKO/goose-auth-api-server](https://github.com/GHGHGHKO/goose-auth-api-server)  
 Repository의 API 문서입니다.  
 
 Bitwarden의 API 서버를 clone 했습니다.   
