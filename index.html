@@ -319,6 +319,9 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
+            <a href="#i18n" class="toc-h1 toc-link" data-title="i18n">i18n</a>
+          </li>
+          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
@@ -358,7 +361,19 @@ name, userName, userPassword, folder, notes, uri 등<br>
 로그인 정보를 저장해두고 언제든지 가져올 수 있습니다.  </p>
 
 <p>방문해주셔서 감사합니다. :)</p>
-<h1 id='authentication'>Authentication</h1>
+<h1 id='i18n'>i18n</h1>
+<p>response body에 한국어, 영어를 지원하고 있습니다.
+headers에서 아래 내용을 추가하면 됩니다.</p>
+
+<p>한국어 : <code>Accept-Language: ko_KR</code><br>
+영어 : <code>Accept-Language: en</code></p>
+
+<blockquote>
+<p>i18n 적용 방법</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Accept-Language: en"</span>
+</code></pre></div><h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
