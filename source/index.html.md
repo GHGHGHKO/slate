@@ -40,13 +40,13 @@ name, userName, userPassword, folder, notes, uri 등
 
 > i18n 적용 방법
 
-response body에 한국어, 영어를 지원하고 있습니다.
-headers에서 아래 내용을 추가하면 됩니다.
-
 ```shell
 curl "api_endpoint_here" \
-  -H "Accept-Language: en"
+-H "Accept-Language: en"
 ```
+
+response body에 한국어, 영어를 지원하고 있습니다.
+headers에서 아래 내용을 추가하면 됩니다.
 
 한국어 : `Accept-Language: ko_KR`  
 영어 : `Accept-Language: en`
