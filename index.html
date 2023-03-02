@@ -1118,6 +1118,8 @@ userEmail, userPassword를 입력하여 토큰을 발급 받습니다.<br>
 <p>원하는 정보를 저장 할 수 있습니다.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST https://goose-auth.synology.me/v1/gooseAuth/addItems</code></p>
+<h3 id='headers'>headers</h3>
+<p><code>X-AUTH-TOKEN: some-jwt-token</code></p>
 <h3 id='request-body-3'>Request body</h3>
 <table><thead>
 <tr>
@@ -1260,6 +1262,8 @@ userEmail, userPassword를 입력하여 토큰을 발급 받습니다.<br>
 <p>모든 정보를 가져올 수 있습니다.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://goose-auth.synology.me/v1/gooseAuth/items</code></p>
+<h3 id='headers-2'>headers</h3>
+<p><code>X-AUTH-TOKEN: some-jwt-token</code></p>
 <h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
