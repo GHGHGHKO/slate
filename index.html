@@ -357,7 +357,7 @@
                     <a href="#items" class="toc-h2 toc-link" data-title="items">items</a>
                   </li>
                   <li>
-                    <a href="#6d9ace2fad" class="toc-h2 toc-link" data-title="특정 정보 가져오기">특정 정보 가져오기</a>
+                    <a href="#items-itemidentity" class="toc-h2 toc-link" data-title="/items/{itemIdentity}">/items/{itemIdentity}</a>
                   </li>
               </ul>
           </li>
@@ -1280,7 +1280,7 @@ userEmail, userPassword를 입력하여 토큰을 발급 받습니다.<br>
 <h3 id='headers-2'>headers</h3>
 <p><code>Content-Type: application/json</code>
 <code>X-AUTH-TOKEN: some-jwt-token</code></p>
-<h2 id='6d9ace2fad'>특정 정보 가져오기</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s2">"X-AUTH-TOKEN: some-jwt-token"</span> https://goose-auth.synology.me/v1/gooseAuth/items/22
+<h2 id='items-itemidentity'>/items/{itemIdentity}</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s2">"X-AUTH-TOKEN: some-jwt-token"</span> https://goose-auth.synology.me/v1/gooseAuth/items/22
 </code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.net.HttpURLConnection</span><span class="o">;</span>
