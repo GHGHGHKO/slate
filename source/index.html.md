@@ -618,6 +618,8 @@ API를 호출하기 위해선 jwt token이 있어야 합니다.
 
 ## Add Items
 
+> To Add Items, use this code:
+
 ```shell
 curl -X POST \
   https://goose-auth.synology.me/v1/gooseAuth/addItems \
@@ -852,6 +854,8 @@ uri  | false | 접속장소
 
 ## Get all items
 
+> To Get all items, use this code:
+
 ```shell
 curl -H "X-AUTH-TOKEN: some-jwt-token" https://goose-auth.synology.me/v1/gooseAuth/items
 ```
@@ -979,6 +983,8 @@ req.end();
 `X-AUTH-TOKEN: some-jwt-token`
 
 ## Get item
+
+> To Get item, use this code:
 
 ```shell
 curl -H "X-AUTH-TOKEN: some-jwt-token" https://goose-auth.synology.me/v1/gooseAuth/items/22
@@ -1128,6 +1134,8 @@ Parameter | Required | Description
 itemIdentity | true | addItems ID
 
 ## Update Item
+
+> To Update Item, use this code:
 
 ```shell
 curl -X PUT \
@@ -1408,6 +1416,8 @@ Parameter | Required | Description
 itemIdentity | true | addItems ID
 
 ## Add item url
+
+> To Add item url, use this code:
 
 ```shell
 curl --request POST \
