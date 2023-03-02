@@ -1407,6 +1407,163 @@ Parameter | Required | Description
 --------- | ------- | -----------
 itemIdentity | true | addItems ID
 
+## Add item url
+
+```shell
+curl --request POST \
+     --url https://goose-auth.synology.me/v1/gooseAuth/items/22 \
+     --header 'Content-Type: application/json' \
+     --header 'X-AUTH-TOKEN: some-jwt-token' \
+     --data '{ "uri": ["https://youtu.be/ZZ5LpwO-An4", "https://youtu.be/gy1B3agGNxw"] }'
+```
+
+```java
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class Main {
+  public static void main(String[] args) {
+    URL url = new URL("https://goose-auth.synology.me/v1/gooseAuth/items/22");
+    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+    con.setRequestMethod("POST");
+    con.setRequestProperty("Content-Type", "application/json");
+    con.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token");
+    con.setDoOutput(true);
+    String requestBody = "{ \"uri\": [\"https://youtu.be/ZZ5LpwO-An4\", \"https://youtu.be/gy1B3agGNxw\"] }";
+    con.getOutputStream().write(requestBody.getBytes());
+    int responseCode = con.getResponseCode();
+    System.out.println("Response code: " + responseCode);
+  }
+}
+```
+
+```kotlin
+import java.net.HttpURLConnection
+import java.net.URL
+
+fun main() {
+  val url = URL("https://goose-auth.synology.me/v1/gooseAuth/items/22")
+  val con = url.openConnection() as HttpURLConnection
+  con.requestMethod = "POST"
+  con.setRequestProperty("Content-Type", "application/json")
+  con.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token")
+  con.doOutput = true
+  val requestBody = "{ \"uri\": [\"https://youtu.be/ZZ5LpwO-An4\", \"https://youtu.be/gy1B3agGNxw\"] }"
+  con.outputStream.write(requestBody.toByteArray())
+  val responseCode = con.responseCode
+  println("Response code: $responseCode")
+}
+```
+
+```python
+import urllib.request
+import json
+
+url = 'https://goose-auth.synology.me/v1/gooseAuth/items/22'
+data = json.dumps({"uri": ["https://youtu.be/ZZ5LpwO-An4", "https://youtu.be/gy1B3agGNxw"]}).encode('utf-8')
+headers = {
+    'Content-Type': 'application/json',
+    'X-AUTH-TOKEN': 'some-jwt-token'
+}
+req = urllib.request.Request(url, data=data, headers=headers, method='POST')
+with urllib.request.urlopen(req) as response:
+    print(response.status)
+```
+
+```javascript
+const xhr = new XMLHttpRequest();
+
+// 요청 완료 시 콜백 함수 지정
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === XMLHttpRequest.DONE) {
+    console.log(xhr.responseText);
+  }
+}
+
+// HTTP 요청 설정
+xhr.open('POST', 'https://goose-auth.synology.me/v1/gooseAuth/items/22');
+xhr.setRequestHeader('X-AUTH-TOKEN', 'some-jwt-token');
+xhr.setRequestHeader('Content-Type', 'application/json');
+const requestBody = {
+  "uri": [
+    "https://youtu.be/ZZ5LpwO-An4",
+    "https://youtu.be/gy1B3agGNxw"
+  ]
+};
+xhr.send(JSON.stringify(requestBody));
+```
+
+> Add item url Request body:
+
+```json
+{
+  "uri": [
+    "https://youtu.be/ZZ5LpwO-An4",
+    "https://youtu.be/gy1B3agGNxw"
+  ]
+}
+```
+
+> Add item url Response body:
+
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "성공하였습니다.",
+  "data": {
+    "itemIdentity": 22,
+    "name": "goose",
+    "userName": "duck@github.com",
+    "userPassword": "as345gh!@#",
+    "folder": "temp folder",
+    "notes": "temp",
+    "uris": [
+      {
+        "uriIdentity": 55,
+        "uri": "https://youtu.be/zd7c5tQCs1I"
+      },
+      {
+        "uriIdentity": 56,
+        "uri": "https://youtu.be/Svj1bZz2mXw"
+      },
+      {
+        "uriIdentity": 57,
+        "uri": "https://youtu.be/ZZ5LpwO-An4"
+      },
+      {
+        "uriIdentity": 58,
+        "uri": "https://youtu.be/gy1B3agGNxw"
+      }
+    ]
+  }
+}
+```
+
+원하는 uri를 추가 할 수 있습니다.
+
+### HTTP Request
+
+`POST https://goose-auth.synology.me/v1/gooseAuth/items/{itemIdentity}`
+
+### headers
+
+`Content-Type: application/json`
+`X-AUTH-TOKEN: some-jwt-token`
+
+### Request body
+
+key | Required | Description
+--------- | ------- | -----------
+uris  | true | 접속장소
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+itemIdentity | true | addItems ID
+
 # Kittens
 
 ## Get All Kittens
