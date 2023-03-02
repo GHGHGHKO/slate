@@ -279,6 +279,9 @@ jwt token headers는 아래처럼 넣을 수 있습니다.
 <code>some-jwt-token</code>을 jwt token으로 변경해야 합니다.
 </aside>
 
+<aside class="warning">토큰의 유효기간은 1시간입니다.</aside>
+
+
 ## SignUp
 
 ```shell
@@ -404,6 +407,31 @@ req.on('error', error => {
 req.write(payload);
 req.end();
 ```
+
+> SignUp Request body:
+
+```json
+{
+  "userEmail": "pepe-Slate@github.com",
+  "userPassword": "drink-party1!",
+  "userNickname": "pepe"
+}
+```
+
+> SignUp Response body:
+
+```json
+{
+    "success": true,
+    "code": 0,
+    "message": "성공하였습니다."
+}
+```
+
+`/v1/signIn` API를 호출하기 전  
+userEmail, userPassword를 발급하기 위한 API 입니다.
+
+해당 API를 기반으로 `/v1/signUp` API를 호출하면 토큰을 발급 받을 수 있습니다.
 
 
 # Kittens
