@@ -35,6 +35,10 @@ Bitwarden의 API 서버를 clone 했습니다.
 name, userName, userPassword, folder, notes, uri을 입력하여  
 로그인 정보를 저장해두고 언제든지 가져올 수 있습니다.  
 
+[slate Pull request](https://github.com/GHGHGHKO/slate/pulls)  
+[goose-auth Pull request](https://github.com/GHGHGHKO/goose-auth-api-server/pulls)  
+대환영입니다.
+
 방문해주셔서 감사합니다. :)
 
 
