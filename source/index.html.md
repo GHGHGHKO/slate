@@ -284,6 +284,8 @@ jwt token headers는 아래처럼 넣을 수 있습니다.
 
 ## SignUp
 
+> To SignUp, use this code:
+
 ```shell
 curl --location --request POST 'https://goose-auth.synology.me/v1/signUp' \
 --header 'Content-Type: application/json' \
