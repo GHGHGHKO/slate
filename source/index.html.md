@@ -1127,6 +1127,280 @@ Parameter | Required | Description
 --------- | ------- | -----------
 itemIdentity | true | addItems ID
 
+## Update Item
+
+```shell
+curl -X PUT \
+  https://goose-auth.synology.me/v1/gooseAuth/items/22 \
+  -H 'Content-Type: application/json' \
+  -H 'X-AUTH-TOKEN: some-jwt-token' \
+  -d '{
+    "name": "goose",
+    "userName": "duck@github.com",
+    "userPassword": "as345gh!@#",
+    "folder": "temp folder",
+    "notes": "temp",
+    "uris": [
+        {
+            "uriIdentity": 55,
+            "uri": "https://youtu.be/zd7c5tQCs1I"
+        },
+        {
+            "uriIdentity": 56,
+            "uri": "https://youtu.be/Svj1bZz2mXw"
+        }
+    ]
+}'
+```
+
+```java
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.OutputStreamWriter;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class HttpPutExample {
+    public static void main(String[] args) {
+        try {
+            URL url = new URL("https://goose-auth.synology.me/v1/gooseAuth/items/22");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("PUT");
+            con.setRequestProperty("Content-Type", "application/json");
+            con.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token");
+            con.setDoOutput(true);
+
+            String data = "{\"name\": \"goose\", \"userName\": \"duck@github.com\", \"userPassword\": \"as345gh!@#\", \"folder\": \"temp folder\", \"notes\": \"temp\", \"uris\": [{\"uriIdentity\": 55, \"uri\": \"https://youtu.be/zd7c5tQCs1I\"}, {\"uriIdentity\": 56, \"uri\": \"https://youtu.be/Svj1bZz2mXw\"}]}";
+            OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
+            wr.write(data);
+            wr.flush();
+
+            int responseCode = con.getResponseCode();
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            System.out.println(response.toString());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
+```
+
+```kotlin
+import java.net.HttpURLConnection
+import java.net.URL
+import java.io.BufferedReader
+import java.io.InputStreamReader
+
+fun main() {
+    val url = URL("https://goose-auth.synology.me/v1/gooseAuth/items/22")
+    val connection = url.openConnection() as HttpURLConnection
+    connection.requestMethod = "PUT"
+    connection.setRequestProperty("Content-Type", "application/json")
+    connection.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token")
+    connection.doOutput = true
+
+    val requestBody = """
+        {
+            "name": "goose",
+            "userName": "duck@github.com",
+            "userPassword": "as345gh!@#",
+            "folder": "temp folder",
+            "notes": "temp",
+            "uris": [
+                {
+                    "uriIdentity": 55,
+                    "uri": "https://youtu.be/zd7c5tQCs1I"
+                },
+                {
+                    "uriIdentity": 56,
+                    "uri": "https://youtu.be/Svj1bZz2mXw"
+                }
+            ]
+        }
+    """.trimIndent()
+
+    connection.outputStream.write(requestBody.toByteArray(Charsets.UTF_8))
+    connection.outputStream.flush()
+
+    val responseCode = connection.responseCode
+    if (responseCode == HttpURLConnection.HTTP_OK) {
+        val responseReader = BufferedReader(InputStreamReader(connection.inputStream))
+        val response = StringBuilder()
+        var line: String? = null
+        while ({ line = responseReader.readLine(); line }() != null) {
+            response.append(line)
+        }
+        responseReader.close()
+        println(response.toString())
+    } else {
+        println("Error: $responseCode")
+    }
+
+    connection.disconnect()
+}
+```
+
+```python
+import json
+import urllib.request
+
+url = "https://goose-auth.synology.me/v1/gooseAuth/items/22"
+headers = {
+    "X-AUTH-TOKEN": "some-jwt-token",
+    "Content-Type": "application/json"
+}
+data = {
+    "name": "goose",
+    "userName": "duck@github.com",
+    "userPassword": "as345gh!@#",
+    "folder": "temp folder",
+    "notes": "temp",
+    "uris": [
+        {
+            "uriIdentity": 55,
+            "uri": "https://youtu.be/zd7c5tQCs1I"
+        },
+        {
+            "uriIdentity": 56,
+            "uri": "https://youtu.be/Svj1bZz2mXw"
+        }
+    ]
+}
+data = json.dumps(data).encode("utf-8")
+
+req = urllib.request.Request(url, data=data, headers=headers, method="PUT")
+response = urllib.request.urlopen(req)
+response_code = response.getcode()
+```
+
+```javascript
+const https = require('https');
+
+const data = JSON.stringify({
+  "name": "goose",
+  "userName": "duck@github.com",
+  "userPassword": "as345gh!@#",
+  "folder": "temp folder",
+  "notes": "temp",
+  "uris": [
+    {
+      "uriIdentity": 55,
+      "uri": "https://youtu.be/zd7c5tQCs1I"
+    },
+    {
+      "uriIdentity": 56,
+      "uri": "https://youtu.be/Svj1bZz2mXw"
+    }
+  ]
+});
+
+const options = {
+  hostname: 'goose-auth.synology.me',
+  port: 443,
+  path: '/v1/gooseAuth/items/22',
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-AUTH-TOKEN': 'some-jwt-token',
+    'Content-Length': data.length
+  }
+};
+
+const req = https.request(options, res => {
+  console.log(`statusCode: ${res.statusCode}`);
+
+  res.on('data', d => {
+    process.stdout.write(d);
+  });
+});
+
+req.on('error', error => {
+  console.error(error);
+});
+
+req.write(data);
+req.end();
+```
+
+> Update Item Request body:
+
+```json
+{
+  "name": "goose",
+  "userName": "duck@github.com",
+  "userPassword": "as345gh!@#",
+  "folder": "temp folder",
+  "notes": "temp",
+  "uris": [
+    {
+      "uriIdentity": 55,
+      "uri": "https://youtu.be/zd7c5tQCs1I"
+    },
+    {
+      "uriIdentity": 56,
+      "uri": "https://youtu.be/Svj1bZz2mXw"
+    }
+  ]
+}
+```
+
+> Update Item Response body:
+
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "성공하였습니다.",
+  "data": {
+    "itemIdentity": 22,
+    "name": "goose",
+    "userName": "duck@github.com",
+    "userPassword": "as345gh!@#",
+    "folder": "temp folder",
+    "notes": "temp",
+    "uris": [
+      {
+        "uriIdentity": 55,
+        "uri": "https://youtu.be/zd7c5tQCs1I"
+      },
+      {
+        "uriIdentity": 56,
+        "uri": "https://youtu.be/Svj1bZz2mXw"
+      }
+    ]
+  }
+}
+```
+
+원하는 정보를 수정 할 수 있습니다.
+
+### HTTP Request
+
+`PUT https://goose-auth.synology.me/v1/gooseAuth/items/{itemIdentity}`
+
+### headers
+
+`Content-Type: application/json`
+`X-AUTH-TOKEN: some-jwt-token`
+
+### Request body
+
+key | Required | Description
+--------- | ------- | -----------
+name  | true | 정보 이름
+userName  | false | 특정 로그인의 계정명
+userPassword  | false | 특정 로그인의 패스워드
+folder  | false | 저장 위치 지정
+notes  | false | 정보에 대한 설명
+uris  | false | 접속장소
+
 # Kittens
 
 ## Get All Kittens
