@@ -979,6 +979,155 @@ req.end();
 `Content-Type: application/json`
 `X-AUTH-TOKEN: some-jwt-token`
 
+## 특정 정보 가져오기
+
+```shell
+curl -H "X-AUTH-TOKEN: some-jwt-token" https://goose-auth.synology.me/v1/gooseAuth/items/22
+```
+
+```java
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class ApiTest {
+    public static void main(String[] args) {
+        String url = "https://goose-auth.synology.me/v1/gooseAuth/items/22";
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token");
+
+        int responseCode = con.getResponseCode();
+        System.out.println("\nSending 'GET' request to URL : " + url);
+        System.out.println("Response Code : " + responseCode);
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        System.out.println(response.toString());
+    }
+}
+```
+
+```kotlin
+import java.net.HttpURLConnection
+import java.net.URL
+
+fun main() {
+  val url = URL("https://goose-auth.synology.me/v1/gooseAuth/items/22")
+  val con = url.openConnection() as HttpURLConnection
+  con.requestMethod = "GET"
+  con.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token")
+
+  val responseCode = con.responseCode
+  println("\nSending 'GET' request to URL : $url")
+  println("Response Code : $responseCode")
+
+  val input = BufferedReader(InputStreamReader(con.inputStream))
+  var inputLine: String?
+  val response = StringBuffer()
+
+  while (input.readLine().also { inputLine = it } != null) {
+    response.append(inputLine)
+  }
+  input.close()
+
+  println(response.toString())
+}
+```
+
+```python
+import requests
+
+headers = {
+    'X-AUTH-TOKEN': 'some-jwt-token'
+}
+
+response = requests.get('https://goose-auth.synology.me/v1/gooseAuth/items/22', headers=headers)
+print(response.text)
+```
+
+```javascript
+const https = require('https');
+
+const options = {
+  hostname: 'goose-auth.synology.me',
+  path: '/v1/gooseAuth/items/22',
+  method: 'GET',
+  headers: {
+    'X-AUTH-TOKEN': 'some-jwt-token'
+  }
+};
+
+const req = https.request(options, res => {
+  console.log(`statusCode: ${res.statusCode}`);
+
+  res.on('data', d => {
+    process.stdout.write(d);
+  });
+});
+
+req.on('error', error => {
+  console.error(error);
+});
+
+req.end();
+```
+
+> /items/{itemIdentity} Response body:
+
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "성공하였습니다.",
+  "data": {
+    "itemIdentity": 22,
+    "name": "duck",
+    "userName": "duck@goose.com",
+    "userPassword": "Quarkquark12!",
+    "folder": "goose",
+    "notes": "I hate goose",
+    "uris": [
+      {
+        "uriIdentity": 55,
+        "uri": "https://www.youtube.com/watch?v=1P5yyeeYF9o"
+      },
+      {
+        "uriIdentity": 56,
+        "uri": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      }
+    ]
+  }
+}
+```
+
+특정 정보를 가져올 수 있습니다.
+
+### HTTP Request
+
+`GET https://goose-auth.synology.me/v1/gooseAuth/items/{itemIdentity}`
+
+### headers
+
+`Content-Type: application/json`
+`X-AUTH-TOKEN: some-jwt-token`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+itemIdentity | true | addItems ID
+
 # Kittens
 
 ## Get All Kittens
