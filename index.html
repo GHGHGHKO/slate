@@ -353,6 +353,9 @@
                   <li>
                     <a href="#additems" class="toc-h2 toc-link" data-title="addItems">addItems</a>
                   </li>
+                  <li>
+                    <a href="#items" class="toc-h2 toc-link" data-title="items">items</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1154,6 +1157,109 @@ userEmail, userPassword를 입력하여 토큰을 발급 받습니다.<br>
 <td>접속장소</td>
 </tr>
 </tbody></table>
+<h2 id='items'>items</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s2">"X-AUTH-TOKEN: some-jwt-token"</span> https://goose-auth.synology.me/v1/gooseAuth/items
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">java.net.HttpURLConnection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URL</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"https://goose-auth.synology.me/v1/gooseAuth/items"</span><span class="o">;</span>
+        <span class="no">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+        <span class="nc">HttpURLConnection</span> <span class="n">con</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">obj</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+        <span class="n">con</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"GET"</span><span class="o">);</span>
+        <span class="n">con</span><span class="o">.</span><span class="na">setRequestProperty</span><span class="o">(</span><span class="s">"X-AUTH-TOKEN"</span><span class="o">,</span> <span class="s">"some-jwt-token"</span><span class="o">);</span>
+
+        <span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
+        <span class="nc">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="n">con</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
+        <span class="nc">String</span> <span class="n">inputLine</span><span class="o">;</span>
+        <span class="nc">StringBuffer</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+
+        <span class="k">while</span> <span class="o">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">response</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">inputLine</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Response code: "</span> <span class="o">+</span> <span class="n">responseCode</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Response body: "</span> <span class="o">+</span> <span class="n">response</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight kotlin tab-kotlin"><code><span class="k">import</span> <span class="nn">java.net.URL</span>
+<span class="k">import</span> <span class="nn">java.io.BufferedReader</span>
+<span class="k">import</span> <span class="nn">java.io.InputStreamReader</span>
+<span class="k">import</span> <span class="nn">java.net.HttpURLConnection</span>
+
+<span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">url</span> <span class="p">=</span> <span class="nc">URL</span><span class="p">(</span><span class="s">"https://goose-auth.synology.me/v1/gooseAuth/items"</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">connection</span> <span class="p">=</span> <span class="n">url</span><span class="p">.</span><span class="nf">openConnection</span><span class="p">()</span> <span class="k">as</span> <span class="nc">HttpURLConnection</span>
+    <span class="n">connection</span><span class="p">.</span><span class="nf">setRequestProperty</span><span class="p">(</span><span class="s">"X-AUTH-TOKEN"</span><span class="p">,</span> <span class="s">"some-jwt-token"</span><span class="p">)</span>
+    <span class="n">connection</span><span class="p">.</span><span class="n">requestMethod</span> <span class="p">=</span> <span class="s">"GET"</span>
+
+    <span class="kd">val</span> <span class="py">responseCode</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">responseCode</span>
+    <span class="kd">val</span> <span class="py">responseBody</span> <span class="p">=</span> <span class="n">connection</span><span class="p">.</span><span class="n">inputStream</span><span class="p">.</span><span class="nf">bufferedReader</span><span class="p">().</span><span class="nf">use</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="nf">readText</span><span class="p">()</span> <span class="p">}</span>
+
+    <span class="nf">println</span><span class="p">(</span><span class="s">"Response code: $responseCode"</span><span class="p">)</span>
+    <span class="nf">println</span><span class="p">(</span><span class="s">"Response body: $responseBody"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://goose-auth.synology.me/v1/gooseAuth/items'</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">'X-AUTH-TOKEN'</span><span class="p">:</span> <span class="s">'some-jwt-token'</span><span class="p">})</span>
+
+<span class="k">with</span> <span class="n">urllib</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+    <span class="n">response_body</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Response code:"</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="n">status</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Response body:"</span><span class="p">,</span> <span class="n">response_body</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">https</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">https</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">hostname</span><span class="p">:</span> <span class="dl">'</span><span class="s1">goose-auth.synology.me</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">port</span><span class="p">:</span> <span class="mi">443</span><span class="p">,</span>
+    <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/v1/gooseAuth/items</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">'</span><span class="s1">X-AUTH-TOKEN</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">some-jwt-token</span><span class="dl">'</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">https</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">responseBody</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">chunk</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">responseBody</span> <span class="o">+=</span> <span class="nx">chunk</span><span class="p">;</span>
+    <span class="p">});</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">end</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Response code:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Response body:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">responseBody</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">req</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">req</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</code></pre></div>
+<blockquote>
+<p>items Response body:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"성공하였습니다."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"list"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"itemIdentity"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"duck"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"duck@goose.com"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>모든 정보를 가져올 수 있습니다.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://goose-auth.synology.me/v1/gooseAuth/items</code></p>
 <h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
@@ -1190,7 +1296,7 @@ userEmail, userPassword를 입력하여 토큰을 발급 받습니다.<br>
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>GET http://example.com/api/kittens</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -1244,7 +1350,7 @@ Remember — a happy kitten is an authenticated kitten!
 <p>This endpoint retrieves a specific kitten.</p>
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -1283,7 +1389,7 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
