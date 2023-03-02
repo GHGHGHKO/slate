@@ -435,6 +435,132 @@ userEmail, userPassword를 발급하기 위한 API 입니다.
 
 해당 API를 기반으로 `/v1/signUp` API를 호출하면 토큰을 발급 받을 수 있습니다.
 
+## SignIn
+
+> To SignIn, use this code:
+
+```shell
+curl --location --request POST 'https://goose-auth.synology.me/v1/signIn' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "userEmail": "pepe-Slate@github.com",
+    "userPassword": "drink-party1!"
+}'
+```
+
+```java
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.OutputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class HttpPostExample {
+    public static void main(String[] args) {
+        try {
+            URL url = new URL("https://goose-auth.synology.me/v1/signIn");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setDoOutput(true);
+
+            String payload = "{\"userEmail\":\"pepe-Slate@github.com\",\"userPassword\":\"drink-party1!\"}";
+            OutputStream os = conn.getOutputStream();
+            os.write(payload.getBytes());
+            os.flush();
+
+            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+            String output;
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
+
+            conn.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+```kotlin
+import java.net.HttpURLConnection
+import java.net.URL
+
+fun main(args: Array<String>) {
+    val url = URL("https://goose-auth.synology.me/v1/signIn")
+    val conn = url.openConnection() as HttpURLConnection
+    conn.requestMethod = "POST"
+    conn.setRequestProperty("Content-Type", "application/json")
+    conn.doOutput = true
+
+    val payload = "{\"userEmail\":\"pepe-Slate@github.com\",\"userPassword\":\"drink-party1!\"}"
+    val os = conn.outputStream
+    os.write(payload.toByteArray())
+    os.flush()
+
+    val br = conn.inputStream.bufferedReader()
+    var output: String?
+    while (br.readLine().also { output = it } != null) {
+        println(output)
+    }
+
+    conn.disconnect()
+}
+```
+
+```python
+import requests
+import json
+
+url = "https://goose-auth.synology.me/v1/signIn"
+payload = {
+    "userEmail": "pepe-Slate@github.com",
+    "userPassword": "drink-party1!"
+}
+headers = {
+    "Content-Type": "application/json"
+}
+response = requests.post(url, data=json.dumps(payload), headers=headers)
+
+print(response.text)
+```
+
+```javascript
+const https = require('https');
+
+const options = {
+    hostname: 'goose-auth.synology.me',
+    port: 443,
+    path: '/v1/signIn',
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+};
+
+const payload = JSON.stringify({
+    "userEmail": "pepe-Slate@github.com",
+    "userPassword": "drink-party1!"
+});
+
+const req = https.request(options, res => {
+    console.log(`statusCode: ${res.statusCode}`);
+
+    res.on('data', d => {
+        process.stdout.write(d);
+    });
+});
+
+req.on('error', error => {
+    console.error(error);
+});
+
+req.write(payload);
+req.end();
+```
+
+
 
 # Kittens
 
