@@ -725,6 +725,32 @@ jwt token headers는 아래처럼 넣을 수 있습니다.</p>
 userEmail, userPassword를 발급하기 위한 API 입니다.</p>
 
 <p>해당 API를 기반으로 <code>/v1/signUp</code> API를 호출하면 토큰을 발급 받을 수 있습니다.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p>POST https://goose-auth.synology.me/v1/signUp</p>
+<h3 id='request-body'>Request body</h3>
+<table><thead>
+<tr>
+<th>key</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userEmail</td>
+<td>true</td>
+<td>로그인을 위한 userEmail</td>
+</tr>
+<tr>
+<td>userPassword</td>
+<td>true</td>
+<td>로그인을 위한 userPassword</td>
+</tr>
+<tr>
+<td>userNickname</td>
+<td>true</td>
+<td>개인 닉네임</td>
+</tr>
+</tbody></table>
 <h2 id='signin'>SignIn</h2>
 <blockquote>
 <p>To SignIn, use this code:</p>
@@ -853,7 +879,34 @@ userEmail, userPassword를 발급하기 위한 API 입니다.</p>
   </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"성공하였습니다."</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Iiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY3Nzc0NzI2MSwiZXhwIjoxNjc3NzUwODYxfQ.secdNRBHInHkWU720t5s6iF9D0uysnSF1WRIKYoXbWU"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+</span></code></pre></div>
+<p><code>/v1/signUp</code> 호출 후<br>
+userEmail, userPassword를 입력하여 토큰을 발급 받습니다.<br>
+해당 토큰을 아래와 같이 header에 입력 할 수 있습니다.  </p>
+
+<p><code>X-AUTH-TOKEN: some-jwt-token</code> </p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p>POST https://goose-auth.synology.me/v1/SignIn</p>
+<h3 id='request-body-2'>Request body</h3>
+<table><thead>
+<tr>
+<th>key</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userEmail</td>
+<td>true</td>
+<td>회원가입 시 입력했던 userEmail</td>
+</tr>
+<tr>
+<td>userPassword</td>
+<td>true</td>
+<td>회원가입 시 입력했던 userPassword</td>
+</tr>
+</tbody></table>
+<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
@@ -889,7 +942,7 @@ userEmail, userPassword를 발급하기 위한 API 입니다.</p>
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET http://example.com/api/kittens</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
@@ -943,7 +996,7 @@ Remember — a happy kitten is an authenticated kitten!
 <p>This endpoint retrieves a specific kitten.</p>
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -982,7 +1035,7 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
