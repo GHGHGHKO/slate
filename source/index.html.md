@@ -193,28 +193,78 @@ english : `Accept-Language: en`
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
+```shell
+curl "api_endpoint_here" \
+-H "X-AUTH-TOKEN: some-jwt-token"
+```
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```java
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class HttpExample {
+  public static void main(String[] args) {
+    URL url = new URL("http://example.com/api_endpoint_here");
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    
+    // "Accept-Language" 헤더 설정
+    conn.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token");
+
+    // HTTP 요청 메서드 설정
+    conn.setRequestMethod("GET");
+
+    // 요청 전송
+    int responseCode = conn.getResponseCode();
+    System.out.println("Response Code : " + responseCode);
+  }
+}
+```
+
+```kotlin
+import java.net.HttpURLConnection
+import java.net.URL
+
+fun main() {
+  val url = URL("http://example.com/api_endpoint_here")
+  val conn = url.openConnection() as HttpURLConnection
+
+  // "Accept-Language" 헤더 설정
+  conn.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token")
+
+  // HTTP 요청 메서드 설정
+  conn.requestMethod = "GET"
+
+  // 요청 전송
+  val responseCode = conn.responseCode
+  println("Response Code : $responseCode")
+}
 ```
 
 ```python
-import kittn
+import urllib.request
 
-api = kittn.authorize('meowmeowmeow')
-```
+url = "http://example.com/api_endpoint_here"
+headers = {"X-AUTH-TOKEN": "some-jwt-token"}
+req = urllib.request.Request(url, headers=headers)
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
+with urllib.request.urlopen(req) as response:
+   the_page = response.read()
+   print(the_page)
 ```
 
 ```javascript
-const kittn = require('kittn');
+const http = new XMLHttpRequest();
+const url = 'http://example.com/api_endpoint_here';
+const token = 'some-jwt-token';
+http.open('GET', url);
+http.setRequestHeader('X-AUTH-TOKEN', token);
+http.send();
 
-let api = kittn.authorize('meowmeowmeow');
+http.onreadystatechange = (e) => {
+  if (http.readyState === XMLHttpRequest.DONE && http.status === 200) {
+    console.log(http.responseText);
+  }
+}
 ```
 
 > `some-jwt-token` 토큰을 /v1/signIn response body의 jwt token으로 바꿔주세요.
