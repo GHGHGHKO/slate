@@ -437,7 +437,7 @@ userEmail, userPassword를 발급하기 위한 API 입니다.
 
 ### HTTP Request
 
-POST https://goose-auth.synology.me/v1/signUp
+`POST https://goose-auth.synology.me/v1/signUp`
 
 ### Request body
 
@@ -601,7 +601,7 @@ userEmail, userPassword를 입력하여 토큰을 발급 받습니다.
 
 ### HTTP Request
 
-POST https://goose-auth.synology.me/v1/SignIn
+`POST https://goose-auth.synology.me/v1/SignIn`
 
 ### Request body
 
