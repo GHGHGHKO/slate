@@ -612,6 +612,10 @@ userPassword | true | 회원가입 시 입력했던 userPassword
 
 # Goose-Auth API
 
+API를 호출하기 위해선 jwt token이 있어야 합니다.  
+[Bitwarden](https://bitwarden.com/)을 클론코딩한 API 입니다.  
+정보를 저장, 조회, 수정, 삭제가 가능합니다.
+
 ## addItems
 
 ```shell
