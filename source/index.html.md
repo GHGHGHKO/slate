@@ -836,6 +836,7 @@ req.end();
 
 ### headers
 
+`Content-Type: application/json`
 `X-AUTH-TOKEN: some-jwt-token`
 
 ### Request body
