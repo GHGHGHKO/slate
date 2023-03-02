@@ -435,6 +435,19 @@ userEmail, userPassword를 발급하기 위한 API 입니다.
 
 해당 API를 기반으로 `/v1/signUp` API를 호출하면 토큰을 발급 받을 수 있습니다.
 
+### HTTP Request
+
+POST https://goose-auth.synology.me/v1/signUp
+
+### Request body
+
+key | Required | Description
+--------- | ------- | -----------
+userEmail | true | 로그인을 위한 userEmail
+userPassword | true | 로그인을 위한 userPassword
+userNickname | true | 개인 닉네임
+
+
 ## SignIn
 
 > To SignIn, use this code:
@@ -579,6 +592,23 @@ req.end();
   "data": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Iiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY3Nzc0NzI2MSwiZXhwIjoxNjc3NzUwODYxfQ.secdNRBHInHkWU720t5s6iF9D0uysnSF1WRIKYoXbWU"
 }
 ```
+
+`/v1/signUp` 호출 후  
+userEmail, userPassword를 입력하여 토큰을 발급 받습니다.  
+해당 토큰을 아래와 같이 header에 입력 할 수 있습니다.  
+
+`X-AUTH-TOKEN: some-jwt-token` 
+
+### HTTP Request
+
+POST https://goose-auth.synology.me/v1/SignIn
+
+### Request body
+
+key | Required | Description
+--------- | ------- | -----------
+userEmail | true | 회원가입 시 입력했던 userEmail
+userPassword | true | 회원가입 시 입력했던 userPassword
 
 # Kittens
 
