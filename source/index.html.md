@@ -610,6 +610,177 @@ key | Required | Description
 userEmail | true | 회원가입 시 입력했던 userEmail
 userPassword | true | 회원가입 시 입력했던 userPassword
 
+# Goose-Auth API
+
+## addItems
+
+```shell
+curl -X POST \
+  https://goose-auth.synology.me/v1/gooseAuth/addItems \
+  -H 'Content-Type: application/json' \
+  -H 'X-AUTH-TOKEN: some-jwt-token' \
+  -d '{
+    "name":"duck",
+    "userName":"duck@goose.com",
+    "userPassword":"Quarkquark12!",
+    "folder":"goose",
+    "notes":"I hate goose",
+    "uri":[
+        "https://www.youtube.com/watch?v=1P5yyeeYF9o",
+        "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    ]
+}'
+```
+
+```java
+import java.net.*;
+import java.io.*;
+import java.util.*;
+import org.json.*;
+
+public class HttpRequest {
+    public static void main(String[] args) {
+        URL url = new URL("https://goose-auth.synology.me/v1/gooseAuth/addItems");
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("POST");
+
+        // Set headers
+        con.setRequestProperty("Content-Type", "application/json");
+        con.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token");
+
+        // Set request body
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("name", "duck");
+        requestBody.put("userName", "duck@goose.com");
+        requestBody.put("userPassword", "Quarkquark12!");
+        requestBody.put("folder", "goose");
+        requestBody.put("notes", "I hate goose");
+        JSONArray uriArray = new JSONArray();
+        uriArray.put("https://www.youtube.com/watch?v=1P5yyeeYF9o");
+        uriArray.put("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+        requestBody.put("uri", uriArray);
+
+        // Send the POST request
+        con.setDoOutput(true);
+        OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
+        wr.write(requestBody.toString());
+        wr.flush();
+
+        // Read the response
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        // Print the response
+        System.out.println(response.toString());
+    }
+}
+```
+
+```kotlin
+import java.io.BufferedWriter
+import java.io.OutputStreamWriter
+import java.net.URL
+
+fun main() {
+    val url = URL("https://goose-auth.synology.me/v1/signUp")
+    val connection = url.openConnection() as HttpURLConnection
+    connection.requestMethod = "POST"
+    connection.setRequestProperty("Content-Type", "application/json")
+    connection.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token")
+    connection.doOutput = true
+
+    val requestBody = """
+        {
+            "userEmail": "pepe-Slate@github.com",
+            "userPassword": "drink-party1!",
+            "userNickname": "pepe"
+        }
+    """.trimIndent()
+
+    val writer = BufferedWriter(OutputStreamWriter(connection.outputStream))
+    writer.write(requestBody)
+    writer.flush()
+    writer.close()
+
+    val responseCode = connection.responseCode
+    val responseBody = connection.inputStream.bufferedReader().use { it.readText() }
+
+    println("Response code: $responseCode")
+    println("Response body: $responseBody")
+}
+```
+
+```python
+import requests
+import json
+
+url = "https://goose-auth.synology.me/v1/gooseAuth/addItems"
+payload = {
+    "name": "duck",
+    "userName": "duck@goose.com",
+    "userPassword": "Quarkquark12!",
+    "folder": "goose",
+    "notes": "I hate goose",
+    "uri": [
+        "https://www.youtube.com/watch?v=1P5yyeeYF9o",
+        "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    ]
+}
+headers = {
+    "Content-Type": "application/json",
+    "X-AUTH-TOKEN": "some-jwt-token"
+}
+response = requests.post(url, data=json.dumps(payload), headers=headers)
+print(response.content)
+```
+
+```javascript
+const https = require('https');
+
+const options = {
+    hostname: 'goose-auth.synology.me',
+    path: '/v1/gooseAuth/addItems',
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-AUTH-TOKEN': 'some-jwt-token'
+    }
+};
+
+const req = https.request(options, (res) => {
+    console.log(`statusCode: ${res.statusCode}`);
+
+    res.on('data', (d) => {
+        process.stdout.write(d);
+    });
+});
+
+req.on('error', (error) => {
+    console.error(error);
+});
+
+const payload = JSON.stringify({
+    name: 'duck',
+    userName: 'duck@goose.com',
+    userPassword: 'Quarkquark12!',
+    folder: 'goose',
+    notes: 'I hate goose',
+    uri: [
+        'https://www.youtube.com/watch?v=1P5yyeeYF9o',
+        'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+    ]
+});
+
+req.write(payload);
+req.end();
+```
+
+
 # Kittens
 
 ## Get All Kittens
