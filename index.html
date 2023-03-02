@@ -356,6 +356,9 @@
                   <li>
                     <a href="#items" class="toc-h2 toc-link" data-title="items">items</a>
                   </li>
+                  <li>
+                    <a href="#6d9ace2fad" class="toc-h2 toc-link" data-title="특정 정보 가져오기">특정 정보 가져오기</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -374,6 +377,17 @@
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-goose-auth-api-uses-the-following-error-codes" class="toc-h2 toc-link" data-title="The goose-auth API uses the following error codes:">The goose-auth API uses the following error codes:</a>
+                  </li>
+                  <li>
+                    <a href="#response-body" class="toc-h2 toc-link" data-title="오류 response body 메시지와 코드">오류 response body 메시지와 코드</a>
+                  </li>
+                  <li>
+                    <a href="#error-response-body-message-and-codes" class="toc-h2 toc-link" data-title="Error Response body message and codes">Error Response body message and codes</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -1119,7 +1133,8 @@ userEmail, userPassword를 입력하여 토큰을 발급 받습니다.<br>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST https://goose-auth.synology.me/v1/gooseAuth/addItems</code></p>
 <h3 id='headers'>headers</h3>
-<p><code>X-AUTH-TOKEN: some-jwt-token</code></p>
+<p><code>Content-Type: application/json</code>
+<code>X-AUTH-TOKEN: some-jwt-token</code></p>
 <h3 id='request-body-3'>Request body</h3>
 <table><thead>
 <tr>
@@ -1263,7 +1278,143 @@ userEmail, userPassword를 입력하여 토큰을 발급 받습니다.<br>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://goose-auth.synology.me/v1/gooseAuth/items</code></p>
 <h3 id='headers-2'>headers</h3>
-<p><code>X-AUTH-TOKEN: some-jwt-token</code></p>
+<p><code>Content-Type: application/json</code>
+<code>X-AUTH-TOKEN: some-jwt-token</code></p>
+<h2 id='6d9ace2fad'>특정 정보 가져오기</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-H</span> <span class="s2">"X-AUTH-TOKEN: some-jwt-token"</span> https://goose-auth.synology.me/v1/gooseAuth/items/22
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.HttpURLConnection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URL</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ApiTest</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">"https://goose-auth.synology.me/v1/gooseAuth/items/22"</span><span class="o">;</span>
+        <span class="no">URL</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+        <span class="nc">HttpURLConnection</span> <span class="n">con</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">obj</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+        <span class="n">con</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"GET"</span><span class="o">);</span>
+        <span class="n">con</span><span class="o">.</span><span class="na">setRequestProperty</span><span class="o">(</span><span class="s">"X-AUTH-TOKEN"</span><span class="o">,</span> <span class="s">"some-jwt-token"</span><span class="o">);</span>
+
+        <span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\nSending 'GET' request to URL : "</span> <span class="o">+</span> <span class="n">url</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Response Code : "</span> <span class="o">+</span> <span class="n">responseCode</span><span class="o">);</span>
+
+        <span class="nc">BufferedReader</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span>
+                <span class="k">new</span> <span class="nf">InputStreamReader</span><span class="o">(</span><span class="n">con</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
+        <span class="nc">String</span> <span class="n">inputLine</span><span class="o">;</span>
+        <span class="nc">StringBuffer</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuffer</span><span class="o">();</span>
+
+        <span class="k">while</span> <span class="o">((</span><span class="n">inputLine</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">response</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">inputLine</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight kotlin tab-kotlin"><code><span class="k">import</span> <span class="nn">java.net.HttpURLConnection</span>
+<span class="k">import</span> <span class="nn">java.net.URL</span>
+
+<span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">val</span> <span class="py">url</span> <span class="p">=</span> <span class="nc">URL</span><span class="p">(</span><span class="s">"https://goose-auth.synology.me/v1/gooseAuth/items/22"</span><span class="p">)</span>
+  <span class="kd">val</span> <span class="py">con</span> <span class="p">=</span> <span class="n">url</span><span class="p">.</span><span class="nf">openConnection</span><span class="p">()</span> <span class="k">as</span> <span class="nc">HttpURLConnection</span>
+  <span class="n">con</span><span class="p">.</span><span class="n">requestMethod</span> <span class="p">=</span> <span class="s">"GET"</span>
+  <span class="n">con</span><span class="p">.</span><span class="nf">setRequestProperty</span><span class="p">(</span><span class="s">"X-AUTH-TOKEN"</span><span class="p">,</span> <span class="s">"some-jwt-token"</span><span class="p">)</span>
+
+  <span class="kd">val</span> <span class="py">responseCode</span> <span class="p">=</span> <span class="n">con</span><span class="p">.</span><span class="n">responseCode</span>
+  <span class="nf">println</span><span class="p">(</span><span class="s">"\nSending 'GET' request to URL : $url"</span><span class="p">)</span>
+  <span class="nf">println</span><span class="p">(</span><span class="s">"Response Code : $responseCode"</span><span class="p">)</span>
+
+  <span class="kd">val</span> <span class="py">input</span> <span class="p">=</span> <span class="nc">BufferedReader</span><span class="p">(</span><span class="nc">InputStreamReader</span><span class="p">(</span><span class="n">con</span><span class="p">.</span><span class="n">inputStream</span><span class="p">))</span>
+  <span class="kd">var</span> <span class="py">inputLine</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span>
+  <span class="kd">val</span> <span class="py">response</span> <span class="p">=</span> <span class="nc">StringBuffer</span><span class="p">()</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="n">input</span><span class="p">.</span><span class="nf">readLine</span><span class="p">().</span><span class="nf">also</span> <span class="p">{</span> <span class="n">inputLine</span> <span class="p">=</span> <span class="n">it</span> <span class="p">}</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">response</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">inputLine</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="n">input</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+
+  <span class="nf">println</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">toString</span><span class="p">())</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'X-AUTH-TOKEN'</span><span class="p">:</span> <span class="s">'some-jwt-token'</span>
+<span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://goose-auth.synology.me/v1/gooseAuth/items/22'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">https</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">https</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">hostname</span><span class="p">:</span> <span class="dl">'</span><span class="s1">goose-auth.synology.me</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/v1/gooseAuth/items/22</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">X-AUTH-TOKEN</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">some-jwt-token</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">https</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`statusCode: </span><span class="p">${</span><span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+
+  <span class="nx">res</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">,</span> <span class="nx">d</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">d</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">req</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">req</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</code></pre></div>
+<blockquote>
+<p>/items/{itemIdentity} Response body:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"성공하였습니다."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"itemIdentity"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"duck"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"duck@goose.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userPassword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Quarkquark12!"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"folder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"goose"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"I hate goose"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"uris"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"uriIdentity"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.youtube.com/watch?v=1P5yyeeYF9o"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"uriIdentity"</span><span class="p">:</span><span class="w"> </span><span class="mi">56</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.youtube.com/watch?v=dQw4w9WgXcQ"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>특정 정보를 가져올 수 있습니다.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://goose-auth.synology.me/v1/gooseAuth/items/{itemIdentity}</code></p>
+<h3 id='headers-3'>headers</h3>
+<p><code>Content-Type: application/json</code>
+<code>X-AUTH-TOKEN: some-jwt-token</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>itemIdentity</td>
+<td>true</td>
+<td>addItems ID</td>
+</tr>
+</tbody></table>
 <h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
@@ -1300,9 +1451,9 @@ userEmail, userPassword를 입력하여 토큰을 발급 받습니다.<br>
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1354,7 +1505,7 @@ Remember — a happy kitten is an authenticated kitten!
 <p>This endpoint retrieves a specific kitten.</p>
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -1393,7 +1544,7 @@ Remember — a happy kitten is an authenticated kitten!
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
@@ -1407,13 +1558,7 @@ Remember — a happy kitten is an authenticated kitten!
 <td>The ID of the kitten to delete</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
+<h1 id='errors'>Errors</h1><h3 id='the-goose-auth-api-uses-the-following-error-codes'>The goose-auth API uses the following error codes:</h3>
 <table><thead>
 <tr>
 <th>Error Code</th>
@@ -1430,15 +1575,15 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>Forbidden -- The goose-auth requested is hidden for administrators only.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Not Found -- The specified goose-auth could not be found.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>Method Not Allowed -- You tried to access a goose-auth with an invalid method.</td>
 </tr>
 <tr>
 <td>406</td>
@@ -1446,7 +1591,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>Gone -- The goose-auth requested has been removed from our servers.</td>
 </tr>
 <tr>
 <td>418</td>
@@ -1454,7 +1599,7 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests -- You&#39;re requesting too many goose-auth! Slow down!</td>
 </tr>
 <tr>
 <td>500</td>
@@ -1463,6 +1608,124 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <tr>
 <td>503</td>
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+<h3 id='response-body'>오류 response body 메시지와 코드</h3>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>HttpStatus</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-9999</td>
+<td>500 Internal Server Error</td>
+<td>알 수 없는 오류가 발생하였습니다.</td>
+</tr>
+<tr>
+<td>-1000</td>
+<td>404 Not Found</td>
+<td>존재하지 않는 회원입니다.</td>
+</tr>
+<tr>
+<td>-1001</td>
+<td>401 Unauthorized</td>
+<td>계정이 존재하지 않거나, 이메일 또는 비밀번호가 정확하지 않습니다.</td>
+</tr>
+<tr>
+<td>-1002</td>
+<td>401 Unauthorized</td>
+<td>해당 리소스에 접근하기 위한 권한이 없습니다.</td>
+</tr>
+<tr>
+<td>-1003</td>
+<td>403 Forbidden</td>
+<td>보유한 권한으로 접근할 수 없는 리소스 입니다.</td>
+</tr>
+<tr>
+<td>-1004</td>
+<td>500 Internal Server Error</td>
+<td>통신 중 오류가 발생하였습니다.</td>
+</tr>
+<tr>
+<td>-1005</td>
+<td>409 Conflict</td>
+<td>이미 가입한 회원입니다. 로그인을 해주십시오.</td>
+</tr>
+<tr>
+<td>-1006</td>
+<td>400 Bad Request</td>
+<td>요청 내용에 오류가 발생하였습니다.</td>
+</tr>
+<tr>
+<td>-1007</td>
+<td>404 Not Found</td>
+<td>요청 item 이 존재하지 않습니다.</td>
+</tr>
+<tr>
+<td>-1008</td>
+<td>400 Bad Request</td>
+<td>요청 parameter에 오류가 발생하였습니다.</td>
+</tr>
+</tbody></table>
+<h3 id='error-response-body-message-and-codes'>Error Response body message and codes</h3>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>HttpStatus</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-9999</td>
+<td>500 Internal Server Error</td>
+<td>An unknown error has occurred.</td>
+</tr>
+<tr>
+<td>-1000</td>
+<td>404 Not Found</td>
+<td>This member not exist.</td>
+</tr>
+<tr>
+<td>-1001</td>
+<td>401 Unauthorized</td>
+<td>Your account does not exist or your email or password is incorrect.</td>
+</tr>
+<tr>
+<td>-1002</td>
+<td>401 Unauthorized</td>
+<td>You do not have permission to access this resource.</td>
+</tr>
+<tr>
+<td>-1003</td>
+<td>403 Forbidden</td>
+<td>A resource that can not be accessed with the privileges it has.</td>
+</tr>
+<tr>
+<td>-1004</td>
+<td>500 Internal Server Error</td>
+<td>An error occurred during communication.</td>
+</tr>
+<tr>
+<td>-1005</td>
+<td>409 Conflict</td>
+<td>You are an existing member.</td>
+</tr>
+<tr>
+<td>-1006</td>
+<td>400 Bad Request</td>
+<td>An error has occurred in your request body.</td>
+</tr>
+<tr>
+<td>-1007</td>
+<td>404 Not Found</td>
+<td>This item does not exist.</td>
+</tr>
+<tr>
+<td>-1008</td>
+<td>400 Bad Request</td>
+<td>An error has occurred in your request parameter.</td>
 </tr>
 </tbody></table>
 
