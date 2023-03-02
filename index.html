@@ -835,7 +835,25 @@ userEmail, userPassword를 발급하기 위한 API 입니다.</p>
 
 <span class="nx">req</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">payload</span><span class="p">);</span>
 <span class="nx">req</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
-</code></pre></div><h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+</code></pre></div>
+<blockquote>
+<p>SignIn Request body:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"userEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pepe-Slate@github.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"userPassword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"drink-party1!"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>SignIn Response body:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"성공하였습니다."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Iiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY3Nzc0NzI2MSwiZXhwIjoxNjc3NzUwODYxfQ.secdNRBHInHkWU720t5s6iF9D0uysnSF1WRIKYoXbWU"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
