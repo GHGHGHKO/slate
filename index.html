@@ -342,6 +342,9 @@
                   <li>
                     <a href="#signup" class="toc-h2 toc-link" data-title="SignUp">SignUp</a>
                   </li>
+                  <li>
+                    <a href="#signin" class="toc-h2 toc-link" data-title="SignIn">SignIn</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -586,7 +589,11 @@ jwt token headers는 아래처럼 넣을 수 있습니다.</p>
 </aside>
 
 <aside class="warning">토큰의 유효기간은 1시간입니다.</aside>
-<h2 id='signup'>SignUp</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://goose-auth.synology.me/v1/signUp'</span> <span class="se">\</span>
+<h2 id='signup'>SignUp</h2>
+<blockquote>
+<p>To SignUp, use this code:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://goose-auth.synology.me/v1/signUp'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 <span class="nt">--data-raw</span> <span class="s1">'{
     "userEmail": "pepe-Slate@github.com",
@@ -718,7 +725,117 @@ jwt token headers는 아래처럼 넣을 수 있습니다.</p>
 userEmail, userPassword를 발급하기 위한 API 입니다.</p>
 
 <p>해당 API를 기반으로 <code>/v1/signUp</code> API를 호출하면 토큰을 발급 받을 수 있습니다.</p>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='signin'>SignIn</h2>
+<blockquote>
+<p>To SignIn, use this code:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://goose-auth.synology.me/v1/signIn'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data-raw</span> <span class="s1">'{
+    "userEmail": "pepe-Slate@github.com",
+    "userPassword": "drink-party1!"
+}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">java.net.HttpURLConnection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URL</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.OutputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HttpPostExample</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="no">URL</span> <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://goose-auth.synology.me/v1/signIn"</span><span class="o">);</span>
+            <span class="nc">HttpURLConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">url</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+            <span class="n">conn</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"POST"</span><span class="o">);</span>
+            <span class="n">conn</span><span class="o">.</span><span class="na">setRequestProperty</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">);</span>
+            <span class="n">conn</span><span class="o">.</span><span class="na">setDoOutput</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+
+            <span class="nc">String</span> <span class="n">payload</span> <span class="o">=</span> <span class="s">"{\"userEmail\":\"pepe-Slate@github.com\",\"userPassword\":\"drink-party1!\"}"</span><span class="o">;</span>
+            <span class="nc">OutputStream</span> <span class="n">os</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">getOutputStream</span><span class="o">();</span>
+            <span class="n">os</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">payload</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span>
+            <span class="n">os</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
+
+            <span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">((</span><span class="n">conn</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">())));</span>
+            <span class="nc">String</span> <span class="n">output</span><span class="o">;</span>
+            <span class="k">while</span> <span class="o">((</span><span class="n">output</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">output</span><span class="o">);</span>
+            <span class="o">}</span>
+
+            <span class="n">conn</span><span class="o">.</span><span class="na">disconnect</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight kotlin tab-kotlin"><code><span class="k">import</span> <span class="nn">java.net.HttpURLConnection</span>
+<span class="k">import</span> <span class="nn">java.net.URL</span>
+
+<span class="k">fun</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="nc">Array</span><span class="p">&lt;</span><span class="nc">String</span><span class="p">&gt;)</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">url</span> <span class="p">=</span> <span class="nc">URL</span><span class="p">(</span><span class="s">"https://goose-auth.synology.me/v1/signIn"</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">conn</span> <span class="p">=</span> <span class="n">url</span><span class="p">.</span><span class="nf">openConnection</span><span class="p">()</span> <span class="k">as</span> <span class="nc">HttpURLConnection</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">requestMethod</span> <span class="p">=</span> <span class="s">"POST"</span>
+    <span class="n">conn</span><span class="p">.</span><span class="nf">setRequestProperty</span><span class="p">(</span><span class="s">"Content-Type"</span><span class="p">,</span> <span class="s">"application/json"</span><span class="p">)</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">doOutput</span> <span class="p">=</span> <span class="k">true</span>
+
+    <span class="kd">val</span> <span class="py">payload</span> <span class="p">=</span> <span class="s">"{\"userEmail\":\"pepe-Slate@github.com\",\"userPassword\":\"drink-party1!\"}"</span>
+    <span class="kd">val</span> <span class="py">os</span> <span class="p">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">outputStream</span>
+    <span class="n">os</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">payload</span><span class="p">.</span><span class="nf">toByteArray</span><span class="p">())</span>
+    <span class="n">os</span><span class="p">.</span><span class="nf">flush</span><span class="p">()</span>
+
+    <span class="kd">val</span> <span class="py">br</span> <span class="p">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">inputStream</span><span class="p">.</span><span class="nf">bufferedReader</span><span class="p">()</span>
+    <span class="kd">var</span> <span class="py">output</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">br</span><span class="p">.</span><span class="nf">readLine</span><span class="p">().</span><span class="nf">also</span> <span class="p">{</span> <span class="n">output</span> <span class="p">=</span> <span class="n">it</span> <span class="p">}</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">println</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="n">conn</span><span class="p">.</span><span class="nf">disconnect</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://goose-auth.synology.me/v1/signIn"</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"userEmail"</span><span class="p">:</span> <span class="s">"pepe-Slate@github.com"</span><span class="p">,</span>
+    <span class="s">"userPassword"</span><span class="p">:</span> <span class="s">"drink-party1!"</span>
+<span class="p">}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span>
+<span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">https</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">https</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">hostname</span><span class="p">:</span> <span class="dl">'</span><span class="s1">goose-auth.synology.me</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">port</span><span class="p">:</span> <span class="mi">443</span><span class="p">,</span>
+    <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/v1/signIn</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">payload</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+    <span class="dl">"</span><span class="s2">userEmail</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">pepe-Slate@github.com</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">userPassword</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">drink-party1!</span><span class="dl">"</span>
+<span class="p">});</span>
+
+<span class="kd">const</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">https</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`statusCode: </span><span class="p">${</span><span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+
+    <span class="nx">res</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">,</span> <span class="nx">d</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">d</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">req</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">req</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">payload</span><span class="p">);</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</code></pre></div><h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
