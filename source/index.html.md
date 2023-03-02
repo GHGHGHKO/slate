@@ -37,6 +37,74 @@ name, userName, userPassword, folder, notes, uri을 입력하여
 
 방문해주셔서 감사합니다. :)
 
+
+# Common response body
+
+> Default response body
+
+```json
+{
+    "success": true,
+    "code": 0,
+    "message": "성공하였습니다."
+}
+```
+
+> Single response body
+
+```json
+{
+    "success": true,
+    "code": 0,
+    "message": "성공하였습니다.",
+    "data": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY3NzY1ODkwOSwiZXhwIjoxNjc3NjYyNTA5fQ.lLWl2bA_pLrgJw0pPXebv9P85lQTGLwNSoz4N8KguCs"
+}
+```
+
+
+> List response body
+
+```json
+{
+    "success": true,
+    "code": 0,
+    "message": "성공하였습니다.",
+    "list": [
+        {
+            "itemIdentity": 12,
+            "name": "swagger 테스트test",
+            "userName": "gudrb963@gmail.com"
+        },
+        {
+            "itemIdentity": 21,
+            "name": "duck",
+            "userName": "duck@goose.com"
+        }
+    ]
+}
+```
+
+> Fail response body
+
+```json
+{
+    "success": false,
+    "code": -1005,
+    "message": "You are an existing member."
+}
+```
+
+### Default response body
+`success` : 응답 성공여부 true/false  
+`code` : 응답 성공 번호 >= 0 success, < 0 fail  
+`message` : 응답 메시지
+
+### Single response body
+`data` : single response 데이터
+
+### List response body
+`list` : list response 데이터
+
 # i18n
 
 > i18n 적용 방법
@@ -120,73 +188,6 @@ headers에서 아래 내용을 추가하면 됩니다.
 
 한국어 : `Accept-Language: ko_KR`  
 english : `Accept-Language: en`
-
-# Common response body
-
-> Default response body
-
-```json
-{
-    "success": true,
-    "code": 0,
-    "message": "성공하였습니다."
-}
-```
-
-> Single response body 
-
-```json
-{
-    "success": true,
-    "code": 0,
-    "message": "성공하였습니다.",
-    "data": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY3NzY1ODkwOSwiZXhwIjoxNjc3NjYyNTA5fQ.lLWl2bA_pLrgJw0pPXebv9P85lQTGLwNSoz4N8KguCs"
-}
-```
-
-
-> List response body
-
-```json
-{
-    "success": true,
-    "code": 0,
-    "message": "성공하였습니다.",
-    "list": [
-        {
-            "itemIdentity": 12,
-            "name": "swagger 테스트test",
-            "userName": "gudrb963@gmail.com"
-        },
-        {
-            "itemIdentity": 21,
-            "name": "duck",
-            "userName": "duck@goose.com"
-        }
-    ]
-}
-```
-
-> Fail response body
-
-```json
-{
-    "success": false,
-    "code": -1005,
-    "message": "You are an existing member."
-}
-```
-
-### Default response body   
-`success` : 응답 성공여부 true/false  
-`code` : 응답 성공 번호 >= 0 success, < 0 fail  
-`message` : 응답 메시지
-
-### Single response body
-`data` : single response 데이터
-
-### List response body
-`list` : list response 데이터
 
 # Authentication
 
