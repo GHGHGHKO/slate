@@ -516,7 +516,7 @@ english : <code>Accept-Language: en</code></p>
     <span class="no">URL</span> <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"http://example.com/api_endpoint_here"</span><span class="o">);</span>
     <span class="nc">HttpURLConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">url</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
 
-    <span class="c1">// "Accept-Language" 헤더 설정</span>
+    <span class="c1">// "X-AUTH-TOKEN" 헤더 설정</span>
     <span class="n">conn</span><span class="o">.</span><span class="na">setRequestProperty</span><span class="o">(</span><span class="s">"X-AUTH-TOKEN"</span><span class="o">,</span> <span class="s">"some-jwt-token"</span><span class="o">);</span>
 
     <span class="c1">// HTTP 요청 메서드 설정</span>
@@ -534,7 +534,7 @@ english : <code>Accept-Language: en</code></p>
   <span class="kd">val</span> <span class="py">url</span> <span class="p">=</span> <span class="nc">URL</span><span class="p">(</span><span class="s">"http://example.com/api_endpoint_here"</span><span class="p">)</span>
   <span class="kd">val</span> <span class="py">conn</span> <span class="p">=</span> <span class="n">url</span><span class="p">.</span><span class="nf">openConnection</span><span class="p">()</span> <span class="k">as</span> <span class="nc">HttpURLConnection</span>
 
-  <span class="c1">// "Accept-Language" 헤더 설정</span>
+  <span class="c1">// "X-AUTH-TOKEN" 헤더 설정</span>
   <span class="n">conn</span><span class="p">.</span><span class="nf">setRequestProperty</span><span class="p">(</span><span class="s">"X-AUTH-TOKEN"</span><span class="p">,</span> <span class="s">"some-jwt-token"</span><span class="p">)</span>
 
   <span class="c1">// HTTP 요청 메서드 설정</span>
