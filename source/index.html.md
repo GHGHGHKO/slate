@@ -207,7 +207,7 @@ public class HttpExample {
     URL url = new URL("http://example.com/api_endpoint_here");
     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
     
-    // "Accept-Language" 헤더 설정
+    // "X-AUTH-TOKEN" 헤더 설정
     conn.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token");
 
     // HTTP 요청 메서드 설정
@@ -228,7 +228,7 @@ fun main() {
   val url = URL("http://example.com/api_endpoint_here")
   val conn = url.openConnection() as HttpURLConnection
 
-  // "Accept-Language" 헤더 설정
+  // "X-AUTH-TOKEN" 헤더 설정
   conn.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token")
 
   // HTTP 요청 메서드 설정
