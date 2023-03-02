@@ -979,7 +979,7 @@ req.end();
 `Content-Type: application/json`
 `X-AUTH-TOKEN: some-jwt-token`
 
-## 특정 정보 가져오기
+## /items/{itemIdentity}
 
 ```shell
 curl -H "X-AUTH-TOKEN: some-jwt-token" https://goose-auth.synology.me/v1/gooseAuth/items/22
