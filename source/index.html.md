@@ -846,6 +846,129 @@ notes  | false | 정보에 대한 설명
 uri  | false | 접속장소
 
 
+## items
+
+```shell
+curl -H "X-AUTH-TOKEN: some-jwt-token" https://goose-auth.synology.me/v1/gooseAuth/items
+```
+
+```java
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        String url = "https://goose-auth.synology.me/v1/gooseAuth/items";
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token");
+
+        int responseCode = con.getResponseCode();
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        System.out.println("Response code: " + responseCode);
+        System.out.println("Response body: " + response.toString());
+    }
+}
+```
+
+```kotlin
+import java.net.URL
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+
+fun main() {
+    val url = URL("https://goose-auth.synology.me/v1/gooseAuth/items")
+    val connection = url.openConnection() as HttpURLConnection
+    connection.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token")
+    connection.requestMethod = "GET"
+
+    val responseCode = connection.responseCode
+    val responseBody = connection.inputStream.bufferedReader().use { it.readText() }
+
+    println("Response code: $responseCode")
+    println("Response body: $responseBody")
+}
+```
+
+```python
+import urllib.request
+import json
+
+url = 'https://goose-auth.synology.me/v1/gooseAuth/items'
+req = urllib.request.Request(url, headers={'X-AUTH-TOKEN': 'some-jwt-token'})
+
+with urllib.request.urlopen(req) as response:
+    response_body = response.read().decode('utf-8')
+    print("Response code:", response.status)
+    print("Response body:", response_body)
+```
+
+```javascript
+const https = require('https');
+
+const options = {
+    hostname: 'goose-auth.synology.me',
+    port: 443,
+    path: '/v1/gooseAuth/items',
+    method: 'GET',
+    headers: {
+        'X-AUTH-TOKEN': 'some-jwt-token'
+    }
+};
+
+const req = https.request(options, (res) => {
+    let responseBody = '';
+    res.on('data', (chunk) => {
+        responseBody += chunk;
+    });
+    res.on('end', () => {
+        console.log('Response code:', res.statusCode);
+        console.log('Response body:', responseBody);
+    });
+});
+
+req.on('error', (e) => {
+    console.error(e);
+});
+
+req.end();
+```
+
+> items Response body:
+
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "성공하였습니다.",
+  "list": [
+    {
+      "itemIdentity": 22,
+      "name": "duck",
+      "userName": "duck@goose.com"
+    }
+  ]
+}
+```
+
+모든 정보를 가져올 수 있습니다.
+
+### HTTP Request
+
+`GET https://goose-auth.synology.me/v1/gooseAuth/items`
+
 # Kittens
 
 ## Get All Kittens
