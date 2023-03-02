@@ -560,7 +560,25 @@ req.write(payload);
 req.end();
 ```
 
+> SignIn Request body:
 
+```json
+{
+  "userEmail": "pepe-Slate@github.com",
+  "userPassword": "drink-party1!"
+}
+```
+
+> SignIn Response body:
+
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "성공하였습니다.",
+  "data": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Iiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY3Nzc0NzI2MSwiZXhwIjoxNjc3NzUwODYxfQ.secdNRBHInHkWU720t5s6iF9D0uysnSF1WRIKYoXbWU"
+}
+```
 
 # Kittens
 
