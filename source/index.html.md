@@ -1401,6 +1401,12 @@ folder  | false | 저장 위치 지정
 notes  | false | 정보에 대한 설명
 uris  | false | 접속장소
 
+### Query Parameters
+
+Parameter | Required | Description
+--------- | ------- | -----------
+itemIdentity | true | addItems ID
+
 # Kittens
 
 ## Get All Kittens
