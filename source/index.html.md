@@ -834,6 +834,10 @@ req.end();
 
 `POST https://goose-auth.synology.me/v1/gooseAuth/addItems`
 
+### headers
+
+`X-AUTH-TOKEN: some-jwt-token`
+
 ### Request body
 
 key | Required | Description
@@ -968,6 +972,10 @@ req.end();
 ### HTTP Request
 
 `GET https://goose-auth.synology.me/v1/gooseAuth/items`
+
+### headers
+
+`X-AUTH-TOKEN: some-jwt-token`
 
 # Kittens
 
