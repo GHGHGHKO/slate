@@ -1127,11 +1127,11 @@ req.end();
 `Content-Type: application/json`
 `X-AUTH-TOKEN: some-jwt-token`
 
-### Query Parameters
+### URL Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-itemIdentity | true | addItems ID
+Parameter | Description
+--------- | -----------
+itemIdentity | addItems id
 
 ## Update Item
 
@@ -1409,11 +1409,11 @@ folder  | false | 저장 위치 지정
 notes  | false | 정보에 대한 설명
 uris  | false | 접속장소
 
-### Query Parameters
+### URL Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-itemIdentity | true | addItems ID
+Parameter | Description
+--------- | -----------
+itemIdentity | addItems id
 
 ## Add item url
 
@@ -1568,11 +1568,11 @@ key | Required | Description
 --------- | ------- | -----------
 uris  | true | 접속장소
 
-### Query Parameters
+### URL Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-itemIdentity | true | addItems ID
+Parameter | Description
+--------- | -----------
+itemIdentity | addItems id
 
 # Kittens
 
