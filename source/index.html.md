@@ -616,7 +616,7 @@ API를 호출하기 위해선 jwt token이 있어야 합니다.
 [Bitwarden](https://bitwarden.com/)을 클론코딩한 API 입니다.  
 정보를 저장, 조회, 수정, 삭제가 가능합니다.
 
-## addItems
+## Add Items
 
 ```shell
 curl -X POST \
@@ -850,8 +850,7 @@ folder  | false | 저장 위치 지정
 notes  | false | 정보에 대한 설명
 uri  | false | 접속장소
 
-
-## items
+## Get all items
 
 ```shell
 curl -H "X-AUTH-TOKEN: some-jwt-token" https://goose-auth.synology.me/v1/gooseAuth/items
@@ -979,7 +978,7 @@ req.end();
 `Content-Type: application/json`
 `X-AUTH-TOKEN: some-jwt-token`
 
-## /items/{itemIdentity}
+## Get item
 
 ```shell
 curl -H "X-AUTH-TOKEN: some-jwt-token" https://goose-auth.synology.me/v1/gooseAuth/items/22
