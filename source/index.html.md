@@ -784,6 +784,67 @@ req.write(payload);
 req.end();
 ```
 
+> addItems Request body:
+
+```json
+{
+  "name":"duck",
+  "userName":"duck@goose.com",
+  "userPassword":"Quarkquark12!",
+  "folder":"goose",
+  "notes":"I hate goose",
+  "uri":[
+    "https://www.youtube.com/watch?v=1P5yyeeYF9o",
+    "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  ]
+}
+```
+
+> addItems Response body:
+
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "성공하였습니다.",
+  "data": {
+    "itemIdentity": 22,
+    "name": "duck",
+    "userName": "duck@goose.com",
+    "userPassword": "Quarkquark12!",
+    "folder": "goose",
+    "notes": "I hate goose",
+    "uri": [
+      {
+        "uriIdentity": 55,
+        "uri": "https://www.youtube.com/watch?v=1P5yyeeYF9o"
+      },
+      {
+        "uriIdentity": 56,
+        "uri": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      }
+    ]
+  }
+}
+```
+
+원하는 정보를 저장 할 수 있습니다.
+
+### HTTP Request
+
+`POST https://goose-auth.synology.me/v1/gooseAuth/addItems`
+
+### Request body
+
+key | Required | Description
+--------- | ------- | -----------
+name  | true | 정보 이름
+userName  | false | 특정 로그인의 계정명
+userPassword  | false | 특정 로그인의 패스워드
+folder  | false | 저장 위치 지정
+notes  | false | 정보에 대한 설명
+uri  | false | 접속장소
+
 
 # Kittens
 
