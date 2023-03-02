@@ -859,7 +859,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         String url = "https://goose-auth.synology.me/v1/gooseAuth/items";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
