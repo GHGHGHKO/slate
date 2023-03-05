@@ -1734,3 +1734,128 @@ Parameter | Description
 --------- | -----------
 itemIdentity | addItems id
 
+## Delete item
+
+> To Delete item url, use this code:
+
+```shell
+curl -X DELETE \
+  -H "X-AUTH-TOKEN: some-jwt-token" \
+  -H "Content-Type: application/json" \
+  "https://goose-auth.synology.me/v1/gooseAuth/items?itemIdentity=22"
+```
+
+```java
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class DeleteRequest {
+
+  public static void main(String[] args) {
+    URL url = new URL("https://goose-auth.synology.me/v1/gooseAuth/items?itemIdentity=22");
+    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+    con.setRequestMethod("DELETE");
+    con.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token");
+    con.setRequestProperty("Content-Type", "application/json");
+
+    int status = con.getResponseCode();
+    System.out.println("Response Code: " + status);
+  }
+}
+```
+
+```kotlin
+import java.net.HttpURLConnection
+import java.net.URL
+
+fun main() {
+  val url = URL("https://goose-auth.synology.me/v1/gooseAuth/items?itemIdentity=22")
+  val con = url.openConnection() as HttpURLConnection
+  con.requestMethod = "DELETE"
+  con.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token")
+  con.setRequestProperty("Content-Type", "application/json")
+
+  val status = con.responseCode
+  println("Response Code: $status")
+}
+```
+
+```python
+import http.client
+
+conn = http.client.HTTPSConnection("goose-auth.synology.me")
+
+payload = ''
+
+headers = {
+    'X-AUTH-TOKEN': 'some-jwt-token',
+    'Content-Type': 'application/json'
+}
+
+conn.request("DELETE", "/v1/gooseAuth/items?itemIdentity=22", payload, headers)
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
+```
+
+```javascript
+const https = require('https');
+
+const options = {
+  hostname: 'goose-auth.synology.me',
+  path: '/v1/gooseAuth/items?itemIdentity=22',
+  method: 'DELETE',
+  headers: {
+    'X-AUTH-TOKEN': 'some-jwt-token',
+    'Content-Type': 'application/json'
+  }
+};
+
+const req = https.request(options, (res) => {
+  console.log(`statusCode: ${res.statusCode}`);
+
+  res.on('data', (d) => {
+    process.stdout.write(d);
+  });
+});
+
+req.on('error', (error) => {
+  console.error(error);
+});
+
+req.end();
+```
+
+> Delete item url Request body:
+
+[https://goose-auth.synology.me/v1/gooseAuth/items?itemIdentity=22
+](https://goose-auth.synology.me/v1/gooseAuth/items?itemIdentity=22)
+
+> Delete item url Response body:
+
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "성공하였습니다."
+}
+```
+
+원하는 item을 삭제 할 수 있습니다.
+
+### HTTP Request
+
+`DELETE https://goose-auth.synology.me/v1/gooseAuth/items`
+
+### headers
+
+`Content-Type: application/json`
+`X-AUTH-TOKEN: some-jwt-token`
+
+### Query Parameters
+
+key | Required | Description
+--------- | ------- | -----------
+itemIdentity  | true | item id
