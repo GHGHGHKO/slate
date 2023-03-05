@@ -1678,11 +1678,6 @@ req.on('error', error => {
 req.end();
 ```
 
-> Delete item uris Request URL:
-
-[https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&uriIdentity=56
-](https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&uriIdentity=56)
-
 > Delete item uris url Response body:
 
 ```json
@@ -1827,11 +1822,6 @@ req.on('error', (error) => {
 
 req.end();
 ```
-
-> Delete item url Request body:
-
-[https://goose-auth.synology.me/v1/gooseAuth/items?itemIdentity=22
-](https://goose-auth.synology.me/v1/gooseAuth/items?itemIdentity=22)
 
 > Delete item url Response body:
 
