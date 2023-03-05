@@ -1577,3 +1577,160 @@ uris  | true | 접속장소
 Parameter | Description
 --------- | -----------
 itemIdentity | addItems id
+
+## Delete item uris
+
+> To Delete item uris url, use this code:
+
+```shell
+curl -X DELETE \
+  'https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&uriIdentity=56' \
+  -H 'Content-Type: application/json' \
+  -H 'X-AUTH-TOKEN: some-jwt-token'
+```
+
+```java
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class DeleteRequestExample {
+  public static void main(String[] args) {
+    try {
+      URL url = new URL("https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&uriIdentity=56");
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+      conn.setRequestMethod("DELETE");
+      conn.setRequestProperty("Content-Type", "application/json");
+      conn.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token");
+
+      if (conn.getResponseCode() != 204) {
+        throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+      }
+
+      conn.disconnect();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+```kotlin
+import java.net.URL
+import java.net.HttpURLConnection
+
+fun main() {
+  try {
+    val url = URL("https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&uriIdentity=56")
+    val conn = url.openConnection() as HttpURLConnection
+    conn.requestMethod = "DELETE"
+    conn.setRequestProperty("Content-Type", "application/json")
+    conn.setRequestProperty("X-AUTH-TOKEN", "some-jwt-token")
+
+    if (conn.responseCode != 204) {
+      throw RuntimeException("Failed : HTTP error code : " + conn.responseCode)
+    }
+
+    conn.disconnect()
+  } catch (e: Exception) {
+    e.printStackTrace()
+  }
+}
+```
+
+```python
+import urllib.request
+
+url = 'https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&uriIdentity=56'
+req = urllib.request.Request(url, method='DELETE')
+req.add_header('Content-Type', 'application/json')
+req.add_header('X-AUTH-TOKEN', 'some-jwt-token')
+
+with urllib.request.urlopen(req) as f:
+    pass
+```
+
+```javascript
+const https = require('https');
+
+const options = {
+  hostname: 'goose-auth.synology.me',
+  path: '/v1/gooseAuth/items/22?uriIdentity=55&uriIdentity=56',
+  method: 'DELETE',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-AUTH-TOKEN': 'some-jwt-token'
+  }
+};
+
+const req = https.request(options, res => {
+  console.log(`statusCode: ${res.statusCode}`);
+
+  res.on('data', d => {
+    process.stdout.write(d);
+  });
+});
+
+req.on('error', error => {
+  console.error(error);
+});
+
+req.end();
+```
+
+> Delete item uris Request URL:
+
+[https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&uriIdentity=56
+](https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&uriIdentity=56)
+
+> Delete item uris url Response body:
+
+```json
+{
+  "success": true,
+  "code": 0,
+  "message": "성공하였습니다.",
+  "data": {
+    "itemIdentity": 22,
+    "name": "goose",
+    "userName": "duck@github.com",
+    "userPassword": "as345gh!@#",
+    "folder": "temp folder",
+    "notes": "temp",
+    "uris": [
+      {
+        "uriIdentity": 57,
+        "uri": "https://youtu.be/ZZ5LpwO-An4"
+      },
+      {
+        "uriIdentity": 58,
+        "uri": "https://youtu.be/gy1B3agGNxw"
+      }
+    ]
+  }
+}
+```
+
+원하는 uri 정보를 삭제 할 수 있습니다.
+
+### HTTP Request
+
+`DELETE https://goose-auth.synology.me/v1/gooseAuth/items/{itemIdentity}`
+
+### headers
+
+`Content-Type: application/json`
+`X-AUTH-TOKEN: some-jwt-token`
+
+### Query Parameters
+
+key | Required | Description
+--------- | ------- | -----------
+uriIdentity  | true | URI id
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+itemIdentity | addItems id
+
