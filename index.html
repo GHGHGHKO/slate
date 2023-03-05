@@ -365,6 +365,9 @@
                   <li>
                     <a href="#add-item-url" class="toc-h2 toc-link" data-title="Add item url">Add item url</a>
                   </li>
+                  <li>
+                    <a href="#delete-item-uris" class="toc-h2 toc-link" data-title="Delete item uris">Delete item uris</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1857,6 +1860,158 @@ userEmail, userPassword를 입력하여 토큰을 발급 받습니다.<br>
 </tr>
 </tbody></table>
 <h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>itemIdentity</td>
+<td>addItems id</td>
+</tr>
+</tbody></table>
+<h2 id='delete-item-uris'>Delete item uris</h2>
+<blockquote>
+<p>To Delete item uris url, use this code:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="se">\</span>
+  <span class="s1">'https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&amp;uriIdentity=56'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'X-AUTH-TOKEN: some-jwt-token'</span>
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">java.net.HttpURLConnection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URL</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DeleteRequestExample</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="no">URL</span> <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&amp;uriIdentity=56"</span><span class="o">);</span>
+      <span class="nc">HttpURLConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">url</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+      <span class="n">conn</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"DELETE"</span><span class="o">);</span>
+      <span class="n">conn</span><span class="o">.</span><span class="na">setRequestProperty</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">);</span>
+      <span class="n">conn</span><span class="o">.</span><span class="na">setRequestProperty</span><span class="o">(</span><span class="s">"X-AUTH-TOKEN"</span><span class="o">,</span> <span class="s">"some-jwt-token"</span><span class="o">);</span>
+
+      <span class="k">if</span> <span class="o">(</span><span class="n">conn</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">()</span> <span class="o">!=</span> <span class="mi">204</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="s">"Failed : HTTP error code : "</span> <span class="o">+</span> <span class="n">conn</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">());</span>
+      <span class="o">}</span>
+
+      <span class="n">conn</span><span class="o">.</span><span class="na">disconnect</span><span class="o">();</span>
+
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight kotlin tab-kotlin"><code><span class="k">import</span> <span class="nn">java.net.URL</span>
+<span class="k">import</span> <span class="nn">java.net.HttpURLConnection</span>
+
+<span class="k">fun</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">url</span> <span class="p">=</span> <span class="nc">URL</span><span class="p">(</span><span class="s">"https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&amp;uriIdentity=56"</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">conn</span> <span class="p">=</span> <span class="n">url</span><span class="p">.</span><span class="nf">openConnection</span><span class="p">()</span> <span class="k">as</span> <span class="nc">HttpURLConnection</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">requestMethod</span> <span class="p">=</span> <span class="s">"DELETE"</span>
+    <span class="n">conn</span><span class="p">.</span><span class="nf">setRequestProperty</span><span class="p">(</span><span class="s">"Content-Type"</span><span class="p">,</span> <span class="s">"application/json"</span><span class="p">)</span>
+    <span class="n">conn</span><span class="p">.</span><span class="nf">setRequestProperty</span><span class="p">(</span><span class="s">"X-AUTH-TOKEN"</span><span class="p">,</span> <span class="s">"some-jwt-token"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">conn</span><span class="p">.</span><span class="n">responseCode</span> <span class="p">!=</span> <span class="mi">204</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="nc">RuntimeException</span><span class="p">(</span><span class="s">"Failed : HTTP error code : "</span> <span class="p">+</span> <span class="n">conn</span><span class="p">.</span><span class="n">responseCode</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="n">conn</span><span class="p">.</span><span class="nf">disconnect</span><span class="p">()</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="nc">Exception</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">e</span><span class="p">.</span><span class="nf">printStackTrace</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">urllib.request</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&amp;uriIdentity=56'</span>
+<span class="n">req</span> <span class="o">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">'DELETE'</span><span class="p">)</span>
+<span class="n">req</span><span class="p">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">'Content-Type'</span><span class="p">,</span> <span class="s">'application/json'</span><span class="p">)</span>
+<span class="n">req</span><span class="p">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">'X-AUTH-TOKEN'</span><span class="p">,</span> <span class="s">'some-jwt-token'</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">urllib</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">pass</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">https</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">https</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">hostname</span><span class="p">:</span> <span class="dl">'</span><span class="s1">goose-auth.synology.me</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/v1/gooseAuth/items/22?uriIdentity=55&amp;uriIdentity=56</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">DELETE</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">X-AUTH-TOKEN</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">some-jwt-token</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">req</span> <span class="o">=</span> <span class="nx">https</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`statusCode: </span><span class="p">${</span><span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+
+  <span class="nx">res</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">data</span><span class="dl">'</span><span class="p">,</span> <span class="nx">d</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">process</span><span class="p">.</span><span class="nx">stdout</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">d</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">req</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">error</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">req</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</code></pre></div>
+<blockquote>
+<p>Delete item uris Request URL:</p>
+</blockquote>
+
+<p><a href="https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&amp;uriIdentity=56">https://goose-auth.synology.me/v1/gooseAuth/items/22?uriIdentity=55&amp;uriIdentity=56
+</a></p>
+
+<blockquote>
+<p>Delete item uris url Response body:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"성공하였습니다."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"itemIdentity"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"goose"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"duck@github.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userPassword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"as345gh!@#"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"folder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"temp folder"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"temp"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"uris"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"uriIdentity"</span><span class="p">:</span><span class="w"> </span><span class="mi">57</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://youtu.be/ZZ5LpwO-An4"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"uriIdentity"</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://youtu.be/gy1B3agGNxw"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>원하는 uri 정보를 삭제 할 수 있습니다.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>DELETE https://goose-auth.synology.me/v1/gooseAuth/items/{itemIdentity}</code></p>
+<h3 id='headers-6'>headers</h3>
+<p><code>Content-Type: application/json</code>
+<code>X-AUTH-TOKEN: some-jwt-token</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>key</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uriIdentity</td>
+<td>true</td>
+<td>URI id</td>
+</tr>
+</tbody></table>
+<h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
