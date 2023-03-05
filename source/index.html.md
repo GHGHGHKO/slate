@@ -21,7 +21,7 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: Documentation for the GHGHGHKO API
 ---
 
 # Introduction
