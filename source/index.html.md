@@ -834,7 +834,11 @@ req.end();
 }
 ```
 
-원하는 정보를 저장 할 수 있습니다.
+원하는 정보를 저장 할 수 있습니다.  
+![image](https://user-images.githubusercontent.com/26823834/227781463-75316d98-78fe-4210-a8ae-853fea196469.png)  
+
+1번을 누르면 입력할 수 있는 칸이 나옵니다.  
+우측에에서 request body를 만든 후 저장 버튼을 누르면 됩니다.
 
 ### HTTP Request
 
@@ -847,14 +851,14 @@ req.end();
 
 ### Request body
 
-key | Required | Description
---------- | ------- | -----------
-name  | true | 정보 이름
-userName  | false | 특정 로그인의 계정명
-userPassword  | false | 특정 로그인의 패스워드
-folder  | false | 저장 위치 지정
-notes  | false | 정보에 대한 설명
-uri  | false | 접속장소
+key | Required | Description | Number of picture | example
+--------- | ------- | ----------- | ---- | -------
+name  | true | 정보 이름 | 2 | github 로그인 계정
+userName  | false | 특정 로그인의 계정명 | 3 | GHGHGHKO
+userPassword  | false | 특정 로그인의 패스워드 | 4 | P@ssW0rd!@#
+folder  | false | 저장 위치 지정 | 6 | git
+notes  | false | 정보에 대한 설명 | 7 | github 계정 아이디입니다.
+uri  | false | 접속장소 | 5 | https://github.com/login
 
 ## Get all items
 
