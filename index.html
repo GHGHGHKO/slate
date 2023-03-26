@@ -1135,7 +1135,11 @@ userEmail, userPassword를 입력하여 토큰을 발급 받습니다.<br>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>원하는 정보를 저장 할 수 있습니다.</p>
+<p>원하는 정보를 저장 할 수 있습니다.<br>
+<img src="https://user-images.githubusercontent.com/26823834/227781463-75316d98-78fe-4210-a8ae-853fea196469.png" alt="image" />  </p>
+
+<p>1번을 누르면 입력할 수 있는 칸이 나옵니다.<br>
+우측에에서 request body를 만든 후 저장 버튼을 누르면 됩니다.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>POST https://goose-auth.synology.me/v1/gooseAuth/addItems</code></p>
 <h3 id='headers'>headers</h3>
@@ -1147,37 +1151,51 @@ userEmail, userPassword를 입력하여 토큰을 발급 받습니다.<br>
 <th>key</th>
 <th>Required</th>
 <th>Description</th>
+<th>Number of picture</th>
+<th>example</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>name</td>
 <td>true</td>
 <td>정보 이름</td>
+<td>2</td>
+<td>github 로그인 계정</td>
 </tr>
 <tr>
 <td>userName</td>
 <td>false</td>
 <td>특정 로그인의 계정명</td>
+<td>3</td>
+<td>GHGHGHKO</td>
 </tr>
 <tr>
 <td>userPassword</td>
 <td>false</td>
 <td>특정 로그인의 패스워드</td>
+<td>4</td>
+<td>P@ssW0rd!@#</td>
 </tr>
 <tr>
 <td>folder</td>
 <td>false</td>
 <td>저장 위치 지정</td>
+<td>6</td>
+<td>git</td>
 </tr>
 <tr>
 <td>notes</td>
 <td>false</td>
 <td>정보에 대한 설명</td>
+<td>7</td>
+<td>github 계정 아이디입니다.</td>
 </tr>
 <tr>
 <td>uri</td>
 <td>false</td>
 <td>접속장소</td>
+<td>5</td>
+<td>https://github.com/login</td>
 </tr>
 </tbody></table>
 <h2 id='get-all-items'>Get all items</h2>
